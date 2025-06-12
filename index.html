@@ -342,15 +342,112 @@
           <p>🌬️ Oxygen Level: 98%</p>
           <p>☠️ Threats Detected: None</p>
         `;
-        document.getElementById('heart-box').style.display = 'none';
-        document.getElementById('fracture-box').style.display = 'none';
-        if (selectedMode !== 'injury') {
-          scanCompleteVoice.play();
-        }
-      }
-    }, 10000);
-  });
 
+        // Show specific results for normal scans
+        switch (selectedMode) {
+          case 'heart':
+            resultsPanel.innerHTML = `
+              <p><strong>🫀 Heart Scan</strong></p>
+              <p>Heart Rate: 72 BPM</p>
+              <p>Rhythm: Normal</p>
+              <p>Oxygen Level: 98%</p>
+              <p>Threats Detected: None</p>
+            `;
+            document.getElementById('heart-box').style.display = 'block';
+            document.getElementById('fracture-box').style.display = 'none';
+            break;
+          case 'fracture':
+            resultsPanel.innerHTML = `
+              <p><strong>🦴 Bone Scan</strong></p>
+              <p>All bones intact</p>
+              <p>Calcium Density: Optimal</p>
+              <p>Threats Detected: None</p>
+            `;
+            document.getElementById('fracture-box').style.display = 'block';
+            document.getElementById('heart-box').style.display = 'none';
+            break;
+          case 'injury':
+            resultsPanel.innerHTML = `
+              <p><strong>Injury Detection</strong></p>
+              <p>No visible injuries</p>
+              <p>Status: All clear</p>
+              <p>Threats Detected: None</p>
+            `;
+            document.getElementById('heart-box').style.display = 'none';
+            document.getElementById('fracture-box').style.display = 'none';
+            break;
+          case 'infection':
+            resultsPanel.innerHTML = `
+              <p><strong>Infection Scan</strong></p>
+              <p>Immune System: Normal</p>
+              <p>Signs of Infection: None</p>
+              <p>Threats Detected: None</p>
+            `;
+            document.getElementById('heart-box').style.display = 'none';
+            document.getElementById('fracture-box').style.display = 'none';
+            break;
+          case 'tumor':
+            resultsPanel.innerHTML = `
+              <p><strong>Tumor Detection</strong></p>
+              <p>Growths Detected: None</p>
+              <p>Organs Scanned: All Clear</p>
+              <p>Threats Detected: None</p>
+            `;
+            document.getElementById('heart-box').style.display = 'none';
+            document.getElementById('fracture-box').style.display = 'none';
+            break;
+          case 'radiation':
+            resultsPanel.innerHTML = `
+              <p><strong>Radiation Exposure</strong></p>
+              <p>Exposure Level: Safe</p>
+              <p>Cells Affected: 0%</p>
+              <p>Threats Detected: None</p>
+            `;
+            document.getElementById('heart-box').style.display = 'none';
+            document.getElementById('fracture-box').style.display = 'none';
+            break;
+          case 'vitals':
+            resultsPanel.innerHTML = `
+              <p><strong>Vitals Scan</strong></p>
+              <p>Heart Rate: 72 BPM</p>
+              <p>Respiration: Normal</p>
+              <p>Body Temp: 36.8°C</p>
+              <p>Oxygen: 98%</p>
+            `;
+            document.getElementById('heart-box').style.display = 'none';
+            document.getElementById('fracture-box').style.display = 'none';
+            break;
+          case 'organ':
+            resultsPanel.innerHTML = `
+              <p><strong>Organ Health Scan</strong></p>
+              <p>Liver: Normal</p>
+              <p>Kidneys: Normal</p>
+              <p>Heart: Normal</p>
+              <p>Threats Detected: None</p>
+            `;
+            document.getElementById('heart-box').style.display = 'none';
+            document.getElementById('fracture-box').style.display = 'none';
+            break;
+          case 'stress':
+            resultsPanel.innerHTML = `
+              <p><strong>Mental Health Scan</strong></p>
+              <p>Stress Level: Low</p>
+              <p>Neural Activity: Normal</p>
+              <p>Mental State: Stable</p>
+            `;
+            document.getElementById('heart-box').style.display = 'none';
+            document.getElementById('fracture-box').style.display = 'none';
+            break;
+          default:
+            document.getElementById('heart-box').style.display = 'none';
+            document.getElementById('fracture-box').style.display = 'none';
+            // Use the generic results already displayed
+            break;
+        }
+
+        scanCompleteVoice.play();
+      }
+    }, 3500); // Time delay for scanning effect
     // --- AI-like auto camera control ---
     // const modelViewer = document.querySelector("#model-viewer");
     
@@ -362,6 +459,7 @@
         if (cameraAnimFrame) cancelAnimationFrame(cameraAnimFrame);
       }, 5000);
     });
+  });
   </script>
 </body>
 </html>
